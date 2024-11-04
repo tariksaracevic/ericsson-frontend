@@ -1,0 +1,18 @@
+.flex-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em;
+  border-bottom: 1px solid skyblue;
+  margin-bottom: 1em;
+  color: #005CBB;
+  font-weight: 500;
+}
+
+.card-body {
+  background-color: #f6faff;
+  /*border-top: 5px solid lightgray;*/
+  /*border-left: 5px solid lightgray;*/
+  box-shadow: lightgray 2px 3px;
+  color: black;
+  cursor: pointer;
+}

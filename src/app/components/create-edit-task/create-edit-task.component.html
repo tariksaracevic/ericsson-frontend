@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Create a New Task</h2>
+<mat-dialog-content>
+  <form>
+    <mat-form-field>
+      <p>Title</p>
+      <input matInput [(ngModel)]="title" name="title">
+    </mat-form-field>
+
+    <mat-form-field>
+      <p>Description</p>
+      <textarea matInput [(ngModel)]="description" name="description"></textarea>
+    </mat-form-field>
+
+    <!--    <mat-form-field>-->
+    <!--      <p>Status</p>-->
+    <!--      <mat-select [(ngModel)]="status" name="status">-->
+    <!--        <mat-option value="OPEN">Open</mat-option>-->
+    <!--        <mat-option value="IN_PROGRESS">In Progress</mat-option>-->
+    <!--        <mat-option value="DONE">Done</mat-option>-->
+    <!--      </mat-select>-->
+    <!--    </mat-form-field>-->
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button color="primary" (click)="createTask()">Create</button>
+</mat-dialog-actions>

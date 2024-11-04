@@ -1,0 +1,29 @@
+.list-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 1em;
+  gap: 1em;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.list-wrapper-title {
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-holder {
+  min-width: 350px;
+  width: 100%;
+  padding: 1em;
+  border: 1px solid lightgray;
+  border-radius: 1em;
+  background-color: #f3f3f3;
+  backdrop-filter: blur(100px);
+}
+
+.list-empty {
+  text-align: center;
+  padding: 2em;
+  background-color: #f3f3f3;
+}
