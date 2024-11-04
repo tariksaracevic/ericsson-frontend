@@ -58,4 +58,6 @@ export class BoardsComponent implements OnInit {
       }
     });
   }
+
+  protected readonly localStorage = localStorage;
 }
