@@ -12,6 +12,10 @@ body {
   background: linear-gradient(323deg, rgba(159, 0, 154, 1) 0%, rgba(109, 109, 233, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
 
+span {
+  font-size: 14px;
+}
+
 ::-webkit-scrollbar {
   margin: 20px;
   padding: 20px;

@@ -6,7 +6,7 @@
 <!--  &lt;!&ndash;    <mat-icon>add</mat-icon>&ndash;&gt;-->
 <!--  &lt;!&ndash;  </button>&ndash;&gt;-->
 <!--</div>-->
-<div cdkDropListGroup>
+<div class="task-list-component" cdkDropListGroup>
   @if (columns && columns.length) {
     <div class="list-wrapper">
 
@@ -46,53 +46,19 @@
     </div>
 
   } @else {
-    <div class="list-empty">
-      <h6>No columns, add one</h6>
+    <div class="list-wrapper">
+    <mat-list class="list-holder">
+      <div class="list-wrapper-title">
+        <h6>No columns, add one</h6>
+      </div>
+<!--      <button mat-icon-button (click)="openCreateColumnDialog()">-->
+<!--        <mat-icon>add</mat-icon>-->
+<!--      </button>-->
+    </mat-list>
+
       <button mat-icon-button (click)="openCreateColumnDialog()">
-        <mat-icon>add</mat-icon>
+        <mat-icon style="color: white">add</mat-icon>
       </button>
     </div>
   }
 </div>
-
-
-<!--<div class="list-wrapper">-->
-<!--  <mat-list class="list-holder">-->
-<!--    <h6>Open:</h6>-->
-
-<!--    @if (openTasks && openTasks.length) {-->
-<!--      @for (task of openTasks; track task.id) {-->
-<!--        <app-task [task]="task"-->
-<!--                  (taskDeleted)="fetchTasks()"></app-task>-->
-<!--      }-->
-<!--    } @else {-->
-<!--      <p>No open tasks available</p>-->
-<!--    }-->
-<!--  </mat-list>-->
-
-<!--  <mat-list class="list-holder">-->
-<!--    <h6>In Progress:</h6>-->
-
-<!--    @if (inProgressTasks && inProgressTasks.length) {-->
-<!--      @for (task of inProgressTasks; track task.id) {-->
-<!--        <app-task [task]="task"-->
-<!--                  (taskDeleted)="fetchTasks()"></app-task>-->
-<!--      }-->
-<!--    } @else {-->
-<!--      <p>No in-progress tasks available</p>-->
-<!--    }-->
-<!--  </mat-list>-->
-
-<!--  <mat-list class="list-holder">-->
-<!--    <h6>Done:</h6>-->
-
-<!--    @if (doneTasks && doneTasks.length) {-->
-<!--      @for (task of doneTasks; track task.id) {-->
-<!--        <app-task [task]="task"-->
-<!--                  (taskDeleted)="fetchTasks()"></app-task>-->
-<!--      }-->
-<!--    } @else {-->
-<!--      <p>No completed tasks available</p>-->
-<!--    }-->
-<!--  </mat-list>-->
-<!--</div>-->

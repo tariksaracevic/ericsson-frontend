@@ -1,18 +1,12 @@
-<mat-toolbar>
+<mat-toolbar class="toolbar">
   @if (isLoggedIn) {
-    <div>
-      <span class="example-spacer"></span>
-
       <span>{{ email }}</span>
 
       <button mat-button (click)="onLogout()">Logout</button>
-  </div>
   }
   @else {
-  <div>
     <span class="example-spacer"></span>
 
     <button mat-button routerLink="/login">Login</button>
-  </div>
   }
 </mat-toolbar>

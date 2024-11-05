@@ -1,10 +1,9 @@
 .list-wrapper {
-  display: flex;
-  justify-content: space-between;
+  display: -webkit-box;
   margin: 1em;
   gap: 1em;
   overflow-x: auto;
-  overflow-y: hidden;
+  height: 90vh;
 }
 
 .list-wrapper-title {
@@ -13,17 +12,24 @@
 }
 
 .list-holder {
-  min-width: 350px;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
   padding: 1em;
   border: 1px solid lightgray;
   border-radius: 1em;
   background-color: #f3f3f3;
   backdrop-filter: blur(100px);
+  height: auto;
 }
 
 .list-empty {
+  display: flex;
+  flex-direction: column;
+  height: auto;
   text-align: center;
-  padding: 2em;
   background-color: #f3f3f3;
+  width: 300px;
+  border-radius: 1em;
+  padding: 1em;
 }

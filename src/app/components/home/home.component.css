@@ -2,3 +2,10 @@
   margin: auto;
   text-align: center;
 }
+
+.home-card {
+  width: 600px;
+  height: 350px;
+  margin:  5em auto auto auto;
+  padding: 1em;
+}
