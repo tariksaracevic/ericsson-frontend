@@ -1,5 +1,7 @@
+@if (!isLoggedIn) {
 <mat-card class="login-container">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="login-form-holder">
     <label for="email">Email:</label>
     <input id="email" type="email" formControlName="email" />
     @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
@@ -12,10 +14,21 @@
     <input id="password" type="password" formControlName="password" />
     @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
     <div>
-      <small>Password is required.</small>
+      <small style="display: inline-block">Password is required.</small>
     </div>
     }
+      <button mat-flat-button type="submit" [disabled]="loginForm.invalid">Login</button>
 
-    <button mat-button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </div>
+
   </form>
 </mat-card>
+<div style="text-align: center">
+<button mat-flat-button (click)="handleRegister()">Or register a new account</button>
+</div>
+}
+@else {
+  <mat-card class="login-container">
+    <p>Already logged in</p>
+  </mat-card>
+}

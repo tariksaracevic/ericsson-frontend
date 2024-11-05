@@ -5,23 +5,23 @@ import {HttpClient} from '@angular/common/http';
 
 interface AuthResponse {
   token: string;
-  email: string;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
+export class RegisterService {
 
   private url = 'http://localhost:8080/api/auth';
 
   constructor(private http: HttpClient) {
   }
 
-  login(email: string, password: string): Observable<AuthResponse> {
-    return this.http.post<AuthResponse>(`${this.url}/authenticate`, {
+  register(email: string, password: string, role: string): Observable<AuthResponse> {
+    return this.http.post<AuthResponse>(`${this.url}/register`, {
       email,
-      password
+      password,
+      role
     });
   }
 }

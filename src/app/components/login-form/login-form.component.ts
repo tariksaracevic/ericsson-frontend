@@ -1,8 +1,11 @@
-import { Component } from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {MatButton} from '@angular/material/button';
-import {MatCard} from '@angular/material/card';
-import {LoginService} from '../../services/login.service';
+// login-form.component.ts
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import { MatCard } from '@angular/material/card';
+import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth-service.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-login',
@@ -15,29 +18,45 @@ import {LoginService} from '../../services/login.service';
   ],
   standalone: true
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
   loginForm: FormGroup;
+  isLoggedIn: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: LoginService) {
+  constructor(
+    private authService: AuthService,
+    private fb: FormBuilder,
+    private loginService: LoginService,
+    private router: Router
+  ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required]
     });
   }
 
-  onSubmit() {
+  ngOnInit(): void {
+    this.checkLoginStatus();
+  }
+
+  checkLoginStatus() {
+    const token = localStorage.getItem('token');
+    this.isLoggedIn = !!token;
+  }
+
+  handleRegister() {
+    this.router.navigate(['/register']);
+  }
+
+  onSubmit(): void {
     if (this.loginForm.valid) {
-      const {email, password} = this.loginForm.value;
-      this.authService.login(email, password).subscribe(
+      const { email, password } = this.loginForm.value;
+      this.loginService.login(email, password).subscribe(
         response => {
-          console.log('Login successful, token:', response.token);
-          localStorage.setItem('token', response.token); // Store the token
-          console.log(localStorage.getItem('token'));
-          // Navigate to another page or handle success
+          this.authService.login(response.token, response.email); // Update global auth state
+          this.router.navigate(['/']);
         },
         error => {
           console.error('Login failed', error);
-          // Handle error (e.g., show message to the user)
         }
       );
     }

@@ -1,21 +1,33 @@
-import {Component} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../../services/auth-service.service';
+import {Router, RouterLink} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
-import {MatIcon} from '@angular/material/icon';
-import {MatButton, MatIconButton} from '@angular/material/button';
-import {Router} from '@angular/router';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-toolbar',
-  standalone: true,
-  imports: [MatToolbar, MatIcon, MatIconButton, MatButton],
   templateUrl: './toolbar.component.html',
-  styleUrl: './toolbar.component.css'
+  standalone: true,
+  imports: [
+    MatToolbar,
+    MatButton,
+    RouterLink
+  ],
+  styleUrls: ['./toolbar.component.css']
 })
-export class ToolbarComponent {
-  constructor(private router: Router) {
+export class ToolbarComponent implements OnInit {
+  isLoggedIn = false;
+  email: string | null = null;
+
+  constructor(private authService: AuthService, private router: Router) {}
+
+  ngOnInit(): void {
+    this.authService.isLoggedIn$.subscribe((loggedIn) => (this.isLoggedIn = loggedIn));
+    this.authService.email$.subscribe((email) => (this.email = email));
   }
 
-  onClick = () => {
-    this.router.navigate(['/'])
+  onLogout(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

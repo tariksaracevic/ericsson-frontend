@@ -1,7 +1,18 @@
-<mat-toolbar style="border-bottom: 1px lightgray solid">
-  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span class="example-spacer"></span>
-  <button mat-button (click)="onClick()">NotTrello</button>
+<mat-toolbar>
+  @if (isLoggedIn) {
+    <div>
+      <span class="example-spacer"></span>
+
+      <span>{{ email }}</span>
+
+      <button mat-button (click)="onLogout()">Logout</button>
+  </div>
+  }
+  @else {
+  <div>
+    <span class="example-spacer"></span>
+
+    <button mat-button routerLink="/login">Login</button>
+  </div>
+  }
 </mat-toolbar>
