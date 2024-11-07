@@ -9,10 +9,13 @@
 }
 
 .card-body {
+  text-wrap: wrap;
   background-color: #f6faff;
-  /*border-top: 5px solid lightgray;*/
-  /*border-left: 5px solid lightgray;*/
   box-shadow: lightgray 2px 3px;
   color: black;
   cursor: pointer;
+}
+
+.task-description {
+  word-wrap: break-word
 }

@@ -1,21 +1,12 @@
-<!-- @for(task of $tasks; track task.id) { -->
-
 <mat-card appearance="outlined" class="card-body" style="margin: 15px;">
   <div class="flex-row">
-    <p style="margin: auto 0 auto 0">{{ task.title }}</p>
+    <p class="task-list-title" style="margin: auto 0 auto 0">{{ task.title }}</p>
     <button (click)="deleteTask()" mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>
   </div>
   <mat-card-content>
-    <p>{{ task.description }}</p>
+    <p class="task-description">{{ task.description }}</p>
   </mat-card-content>
 </mat-card>
-
-<!-- Task Status Menu -->
-<mat-menu #menu="matMenu">
-  <button mat-menu-item>Open</button>
-  <button mat-menu-item>In Progress</button>
-  <button mat-menu-item>Done</button>
-</mat-menu>
 
