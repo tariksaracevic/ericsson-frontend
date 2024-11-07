@@ -30,7 +30,8 @@ import {BoardsService} from '../../services/boards.service';
 export class CreateEditBoardComponent {
   name = '';
 
-  constructor(private dialogRef: MatDialogRef<CreateEditBoardComponent>, private boardsService: BoardsService) {
+  constructor(private dialogRef: MatDialogRef<CreateEditBoardComponent>,
+              private boardsService: BoardsService) {
   }
 
   closeDialog(): void {

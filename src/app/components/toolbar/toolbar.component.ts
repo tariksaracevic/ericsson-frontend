@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../../services/auth-service.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthService} from '../../services/auth-service.service';
 import {Router, RouterLink} from '@angular/router';
 import {MatToolbar} from '@angular/material/toolbar';
 import {MatButton} from '@angular/material/button';
@@ -11,7 +11,7 @@ import {MatButton} from '@angular/material/button';
   imports: [
     MatToolbar,
     MatButton,
-    RouterLink
+    RouterLink,
   ],
   styleUrls: ['./toolbar.component.css']
 })
@@ -19,7 +19,8 @@ export class ToolbarComponent implements OnInit {
   isLoggedIn = false;
   email: string | null = null;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) {
+  }
 
   ngOnInit(): void {
     this.authService.isLoggedIn$.subscribe((loggedIn) => (this.isLoggedIn = loggedIn));

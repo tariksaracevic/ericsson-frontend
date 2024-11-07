@@ -3,16 +3,13 @@
     @for (board of boards; track board.id) {
       <mat-card class="board-card">
         <h6 class="board-name" (click)="openBoard(board.id)">{{ board.name }}</h6>
-        <!--        <button mat-icon-button aria-label="Edit Board">-->
-        <!--          <mat-icon>edit</mat-icon>-->
-        <!--        </button>-->
         <button mat-icon-button aria-label="Remove Board" (click)="deleteBoard(board.id)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card>
     }
-    <button class="board-card board-add-button" mat-flat-button (click)="openCreateBoardDialog()">
-      <mat-icon style="margin: auto">add</mat-icon>
-    </button>
   }
+  <button class="board-add-button" mat-icon-button (click)="openCreateBoardDialog()">
+    <mat-icon style="margin: auto">add</mat-icon>
+  </button>
 </div>

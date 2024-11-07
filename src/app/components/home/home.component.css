@@ -1,11 +1,16 @@
-.home {
-  margin: auto;
-  text-align: center;
-}
-
 .home-card {
   width: 600px;
   height: 350px;
-  margin:  5em auto auto auto;
-  padding: 1em;
+  margin: 5em auto auto auto;
+  padding: 5em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+
+}
+
+.home-card button {
+  margin-top: auto; /* Pushes the button to the bottom */
+  align-self: center; /* Centers the button horizontally */
 }

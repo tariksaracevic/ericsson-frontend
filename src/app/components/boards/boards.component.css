@@ -10,10 +10,11 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin-right: 1em;
+  margin-bottom: 1em;
   align-items: center;
   min-width: 215px;
   height: 100px;
-  margin: 1em;
 }
 
 .board-name {
@@ -23,6 +24,5 @@
 }
 
 .board-add-button {
-  align-self: center;
-  text-align: center;
+  color: white;
 }
