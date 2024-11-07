@@ -1,9 +1,9 @@
 <h2 mat-dialog-title>Create a New Column</h2>
 <mat-dialog-content>
   <form [formGroup]="taskListForm">
-    <mat-form-field class="form-label" appearance="outline">
+    <mat-form-field appearance="outline" class="form-label">
       <p>Title</p>
-      <input matInput formControlName="name">
+      <input formControlName="name" matInput>
       @if (taskListForm.get('name')?.touched && taskListForm.invalid) {
         <mat-error>Title is required</mat-error>
       }
@@ -11,6 +11,6 @@
   </form>
 </mat-dialog-content>
 <mat-dialog-actions align="end">
-  <button mat-button (click)="closeDialog()">Cancel</button>
-  <button mat-button color="primary" (click)="createColumn()">Create</button>
+  <button (click)="closeDialog()" mat-button>Cancel</button>
+  <button (click)="createColumn()" color="primary" mat-button>Create</button>
 </mat-dialog-actions>

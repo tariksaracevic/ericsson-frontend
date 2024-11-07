@@ -25,8 +25,7 @@ export class TaskComponent {
 
   deleteTask(): void {
     this.taskService.deleteTask(this.boardId, this.columnId, this.task.id).subscribe(() => {
-      console.log(`Task with id ${this.task.id} deleted.`);
-      this.taskDeleted.emit(); // Notify parent component
+      this.taskDeleted.emit();
     });
   }
 

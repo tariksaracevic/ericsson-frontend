@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {Router} from '@angular/router';
 
@@ -9,15 +9,14 @@ import {Router} from '@angular/router';
 export class AuthService {
   private url = 'http://localhost:8080/api/auth';
   private isLoggedInSubject = new BehaviorSubject<boolean>(!!localStorage.getItem('token'));
+  isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
   private emailSubject = new BehaviorSubject<string | null>(localStorage.getItem('email'));
+  email$: Observable<string | null> = this.emailSubject.asObservable();
   private errorMessageSubject = new BehaviorSubject<string | null>(null);
+  errorMessage$: Observable<string | null> = this.errorMessageSubject.asObservable();
 
   constructor(private http: HttpClient, private router: Router) {
   }
-
-  isLoggedIn$: Observable<boolean> = this.isLoggedInSubject.asObservable();
-  email$: Observable<string | null> = this.emailSubject.asObservable();
-  errorMessage$: Observable<string | null> = this.errorMessageSubject.asObservable();
 
   login(token: string, email: string): void {
     localStorage.setItem('token', token);
@@ -49,7 +48,7 @@ export class AuthService {
   }
 
   register(email: string, password: string, role: string): void {
-    this.http.post<{ token: string, email: string }>(`${this.url}/register`, { email, password, role })
+    this.http.post<{ token: string, email: string }>(`${this.url}/register`, {email, password, role})
       .subscribe(
         response => {
           this.login(response.token, response.email);

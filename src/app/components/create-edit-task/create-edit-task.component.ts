@@ -1,4 +1,4 @@
-import {Component, Inject, Input} from '@angular/core';
+import {Component, Inject} from '@angular/core';
 import {
   MAT_DIALOG_DATA,
   MatDialogActions,
@@ -13,7 +13,6 @@ import {MatButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
 import {TaskService} from '../../services/task.service';
 import {Task} from '../../models/task.intefrace';
-import {Board} from '../../models/board.interface';
 
 @Component({
   selector: 'app-create-edit-task',
@@ -65,7 +64,6 @@ export class CreateEditTaskComponent {
 
       this.taskService.createTask(this.boardId, this.columnId, newTask).subscribe(
         (createdTask) => {
-          console.log('Task created:', createdTask);
           this.dialogRef.close(createdTask);
         },
         (error) => {

@@ -8,6 +8,7 @@
 .list-wrapper-title {
   display: flex;
   justify-content: space-between;
+  max-width: 300px;
 }
 
 .list-holder {
@@ -21,6 +22,7 @@
   background-color: #f3f3f3;
   backdrop-filter: blur(100px);
   height: auto;
+  white-space: nowrap;
 }
 
 .list-empty {

@@ -8,8 +8,13 @@
         </button>
       </mat-card>
     }
+    <button class="board-add-button" mat-icon-button (click)="openCreateBoardDialog()">
+      <mat-icon style="margin: auto">add</mat-icon>
+    </button>
+  } @else {
+    <mat-card style="padding: 2em; margin: auto">
+      <h6>No boards, create one</h6>
+      <button mat-flat-button (click)="openCreateBoardDialog()">Create a board</button>
+    </mat-card>
   }
-  <button class="board-add-button" mat-icon-button (click)="openCreateBoardDialog()">
-    <mat-icon style="margin: auto">add</mat-icon>
-  </button>
 </div>

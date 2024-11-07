@@ -2,10 +2,10 @@ import {Component, Inject} from '@angular/core';
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {
+  MAT_DIALOG_DATA,
   MatDialogActions,
   MatDialogContent,
   MatDialogRef,
-  MAT_DIALOG_DATA,
   MatDialogTitle
 } from "@angular/material/dialog";
 import {MatError, MatFormField} from "@angular/material/form-field";
@@ -32,8 +32,8 @@ import {Column} from '../../models/task-list.interface';
 })
 export class CreateEditTaskListComponent {
   taskListForm = new FormGroup({
-  name: new FormControl('', Validators.required),
-});
+    name: new FormControl('', Validators.required),
+  });
   boardId: number;
 
   constructor(
@@ -58,7 +58,6 @@ export class CreateEditTaskListComponent {
 
       this.columnService.createColumn(newColumn).subscribe(
         (createdColumn) => {
-          console.log('Column created:', createdColumn);
           this.dialogRef.close(createdColumn);
         },
         (error) => {

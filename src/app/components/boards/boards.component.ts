@@ -5,7 +5,6 @@ import {MatButton, MatIconButton} from '@angular/material/button';
 import {MatCard} from '@angular/material/card';
 import {MatIcon} from '@angular/material/icon';
 import {Router} from '@angular/router';
-import {CreateEditTaskComponent} from '../create-edit-task/create-edit-task.component';
 import {CreateEditBoardComponent} from '../create-edit-board/create-edit-board.component';
 import {MatDialog} from '@angular/material/dialog';
 
@@ -38,24 +37,19 @@ export class BoardsComponent implements OnInit {
 
   deleteBoard(id: number): void {
     this.boardsService.deleteBoard(id).subscribe(() => {
-      console.log(`Board with id ${id} deleted.`);
       this.fetchBoards();
     });
   }
 
   openCreateBoardDialog(): void {
-    console.log('')
     const dialogRef = this.dialog.open(CreateEditBoardComponent, {
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('New board created:', result);
         this.fetchBoards();
       }
     });
   }
-
-  protected readonly localStorage = localStorage;
 }

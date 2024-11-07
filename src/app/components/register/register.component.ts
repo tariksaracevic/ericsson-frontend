@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatButton} from '@angular/material/button';
 import {MatCard} from '@angular/material/card';
@@ -36,7 +36,7 @@ export class RegisterComponent {
     });
   }
 
-  onSubmit() :void {
+  onSubmit(): void {
     if (this.registerForm.valid) {
       const {email, password, role} = this.registerForm.value;
       this.authService.register(email, password, role);

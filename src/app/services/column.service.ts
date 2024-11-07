@@ -17,10 +17,6 @@ export class ColumnService {
     return this.http.post<Column>(`${this.baseUrl}/${newColumn.boardId}/task-lists`, newColumn);
   }
 
-  updateColumn(boardId: number, columnId: number, column: Column): Observable<Column> {
-    return this.http.put<Column>(`${this.baseUrl}/${boardId}/task-lists/${columnId}`, column);
-  }
-
   deleteColumn(boardId: number, columnId: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${boardId}/task-lists/${columnId}`);
   }

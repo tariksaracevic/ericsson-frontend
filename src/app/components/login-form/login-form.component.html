@@ -1,38 +1,37 @@
 @if (!isLoggedIn) {
-<mat-card class="login-container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="form-label" appearance="outline">
-      <p>Email</p>
-    <input matInput id="email" type="email" formControlName="email" />
-    @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-      <mat-error>        Please enter a valid Email
-      </mat-error>
+  <mat-card class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-label" appearance="outline">
+        <p>Email</p>
+        <input matInput id="email" type="email" formControlName="email"/>
+        @if (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
+          <mat-error> Please enter a valid Email
+          </mat-error>
+        }
+
+      </mat-form-field>
+      <mat-form-field class="form-label" appearance="outline">
+
+        <p>Password</p>
+        <input matInput id="password" type="password" formControlName="password"/>
+        @if (loginForm.get('password')?.invalid && loginForm.get('password')?.touched) {
+          <mat-error> Please enter a valid Password
+          </mat-error>
+        }
+      </mat-form-field>
+
+      <button class="login-button" mat-button type="submit" [disabled]="loginForm.invalid">Login</button>
+
+
+    </form>
+    @if (errorMessage) {
+      <mat-error>{{ errorMessage }}</mat-error>
     }
-
-    </mat-form-field>
-    <mat-form-field class="form-label" appearance="outline">
-
-    <p>Password</p>
-    <input matInput id="password" type="password" formControlName="password" />
-    @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
-      <mat-error>        Please enter a valid Password
-      </mat-error>
-    }
-    </mat-form-field>
-
-    <button class="login-button" mat-button type="submit" [disabled]="loginForm.invalid">Login</button>
-
-
-  </form>
-  @if (errorMessage) {
-    <mat-error>{{errorMessage}}</mat-error>
-  }
-</mat-card>
-<div style="text-align: center">
-<button class="register-button" mat-flat-button (click)="handleRegister()">Or register a new account</button>
-</div>
-}
-@else {
+  </mat-card>
+  <div style="text-align: center">
+    <button class="register-button" mat-flat-button (click)="handleRegister()">Or register a new account</button>
+  </div>
+} @else {
   <mat-card class="login-container">
     <p>Already logged in</p>
   </mat-card>

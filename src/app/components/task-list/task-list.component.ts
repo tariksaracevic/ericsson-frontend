@@ -71,7 +71,6 @@ export class TaskListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('New task created:', result);
         this.fetchTasksForColumn(columnId);
       }
     });
@@ -85,19 +84,16 @@ export class TaskListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        console.log('New column created:', result);
         this.fetchColumns();
       }
     });
   }
 
   deleteColumn(columnId: number): void {
-    const confirmDelete = confirm('Are you sure you want to delete this column and all tasks within it?');
-    if (confirmDelete && this.boardId !== undefined) {
+    if (this.boardId !== undefined) {
       this.columnService.deleteColumn(this.boardId, columnId).subscribe(
         () => {
           this.columns = this.columns.filter(column => column.id !== columnId);
-          console.log(`Column with id ${columnId} deleted.`);
         },
         (error) => {
           console.error('Error deleting column:', error);
@@ -149,10 +145,7 @@ export class TaskListComponent implements OnInit {
       const task = previousContainer.data[event.previousIndex];
       transferArrayItem(previousContainer.data, currentContainer.data, event.previousIndex, event.currentIndex);
 
-      console.log(Number(currentContainer.id))
-
       this.taskService.updateTaskColumn(task.id, Number(currentContainer.id), this.boardId!).subscribe(() => {
-        console.log('Task updated in new column');
       });
     }
   }

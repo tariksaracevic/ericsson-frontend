@@ -1,9 +1,9 @@
 <!-- @for(task of $tasks; track task.id) { -->
 
-<mat-card class="card-body" appearance="outlined" style="margin: 15px;">
+<mat-card appearance="outlined" class="card-body" style="margin: 15px;">
   <div class="flex-row">
     <p style="margin: auto 0 auto 0">{{ task.title }}</p>
-    <button mat-icon-button (click)="deleteTask()">
+    <button (click)="deleteTask()" mat-icon-button>
       <mat-icon>delete</mat-icon>
     </button>
   </div>

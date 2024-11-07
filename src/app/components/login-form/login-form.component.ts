@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { MatButton } from '@angular/material/button';
-import { MatCard } from '@angular/material/card';
-import { Router } from '@angular/router';
-import { AuthService } from '../../services/auth-service.service';
-import { LoginService } from '../../services/login.service';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {MatButton} from '@angular/material/button';
+import {MatCard} from '@angular/material/card';
+import {Router} from '@angular/router';
+import {AuthService} from '../../services/auth-service.service';
+import {LoginService} from '../../services/login.service';
 import {MatError, MatFormField} from '@angular/material/form-field';
 import {MatInput} from '@angular/material/input';
 import {Subscription} from 'rxjs';
@@ -51,12 +51,6 @@ export class LoginComponent implements OnInit {
     this.checkLoginStatus();
   }
 
-ngOnDestroy(): void {
-  if (this.errorMessageSubscription) {
-  this.errorMessageSubscription.unsubscribe();
-}
-}
-
   checkLoginStatus() {
     const token = localStorage.getItem('token');
     this.isLoggedIn = !!token;
@@ -68,9 +62,8 @@ ngOnDestroy(): void {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      const { email, password } = this.loginForm.value;
+      const {email, password} = this.loginForm.value;
       this.authService.performLogin(email, password);
-      console.log(this.errorMessage)
     }
   }
 }

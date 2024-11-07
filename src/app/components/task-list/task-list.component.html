@@ -1,4 +1,4 @@
-<div class="task-list-component" cdkDropListGroup>
+<div cdkDropListGroup class="task-list-component">
   @if (columns && columns.length) {
     <div class="list-wrapper">
 
@@ -12,7 +12,7 @@
                 (cdkDropListDropped)="drop($event)">
 
         <div class="list-wrapper-title">
-          <h6>{{ column.name }}</h6>
+          <h6 style="overflow: hidden; text-overflow: ellipsis">{{ column.name }}</h6>
           <button mat-icon-button (click)="deleteColumn(column.id)">
             <mat-icon>delete</mat-icon>
           </button>

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {catchError, Observable} from 'rxjs';
+import {Observable} from 'rxjs';
 import {Task} from '../models/task.intefrace';
 
 @Injectable({
@@ -10,14 +10,6 @@ export class TaskService {
   private baseUrl = `http://localhost:8080/api/boards`
 
   constructor(private http: HttpClient) {
-  }
-
-  getAllTasks() {
-    return this.http.get<Task[]>(`${this.baseUrl}`);
-  }
-
-  getTaskById(boardId: number, columnId: number, id: number) {
-    return this.http.get<Task>(`${this.baseUrl}/${boardId}/task-lists/${columnId}/tasks/${id}`);
   }
 
   getTasksByColumnId(boardId: number, columnId: number): Observable<Task[]> {

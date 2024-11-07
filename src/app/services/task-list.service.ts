@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
-import { TaskService } from './task.service';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskListService {
 
-  constructor() { }
+  constructor() {
+  }
 }

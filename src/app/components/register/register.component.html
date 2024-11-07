@@ -1,33 +1,33 @@
 <mat-card class="register-container">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <mat-form-field class="form-label" appearance="outline">
-    <p>Email:</p>
-    <input matInput id="email" type="email" formControlName="email" />
-    @if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
-      <mat-error>
-        Please enter a valid Email
-      </mat-error>
-    }
+  <form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+    <mat-form-field appearance="outline" class="form-label">
+      <p>Email:</p>
+      <input formControlName="email" id="email" matInput type="email"/>
+      @if (registerForm.get('email')?.invalid && registerForm.get('email')?.touched) {
+        <mat-error>
+          Please enter a valid Email
+        </mat-error>
+      }
     </mat-form-field>
-<mat-form-field class="form-label" appearance="outline">
+    <mat-form-field appearance="outline" class="form-label">
 
-    <p>Password:</p>
-    <input matInput id="password" type="password" formControlName="password" />
-    @if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
-        <mat-error>Please enter a valid Password, 8 characters minimum</mat-error>
-    }
-</mat-form-field>
+      <p>Password:</p>
+      <input formControlName="password" id="password" matInput type="password"/>
+      @if (registerForm.get('password')?.invalid && registerForm.get('password')?.touched) {
+        <mat-error>Please enter a valid Password</mat-error>
+      }
+    </mat-form-field>
 
-<div class="form-label">
-    <p style="margin-left: 1em">Role:</p>
-    <mat-radio-group style="margin-left: 0.5em" formControlName="role">
-      <mat-radio-button value="ADMIN">Admin</mat-radio-button>
-      <mat-radio-button value="USER">User</mat-radio-button>
-    </mat-radio-group>
-    @if(registerForm.get('role')?.invalid && registerForm.get('role')?.touched){
-      <mat-error>Please select a role.</mat-error>
-    }
-  </div>
-    <button class="login-button" mat-button type="submit" [disabled]="registerForm.invalid">Register</button>
+    <div class="form-label">
+      <p style="margin-left: 1em">Role:</p>
+      <mat-radio-group formControlName="role" style="margin-left: 0.5em">
+        <mat-radio-button value="ADMIN">Admin</mat-radio-button>
+        <mat-radio-button value="USER">User</mat-radio-button>
+      </mat-radio-group>
+      @if (registerForm.get('role')?.invalid && registerForm.get('role')?.touched) {
+        <mat-error>Please select a role.</mat-error>
+      }
+    </div>
+    <button [disabled]="registerForm.invalid" class="login-button" mat-button type="submit">Register</button>
   </form>
 </mat-card>
