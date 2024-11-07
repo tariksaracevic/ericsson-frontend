@@ -16,9 +16,9 @@ import {MatIcon} from '@angular/material/icon';
 })
 export class TaskComponent {
   @Input() task!: Task;
-  @Input() boardId!: number;   // Add boardId as an input
-  @Input() columnId!: number;  // Add columnId as an input
-  @Output() taskDeleted = new EventEmitter<void>(); // Emit event when task is deleted
+  @Input() boardId!: number;
+  @Input() columnId!: number;
+  @Output() taskDeleted = new EventEmitter<void>();
 
   constructor(private taskService: TaskService) {
   }

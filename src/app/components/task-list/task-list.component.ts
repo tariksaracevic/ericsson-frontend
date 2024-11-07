@@ -72,29 +72,28 @@ export class TaskListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('New task created:', result);
-        this.fetchTasksForColumn(columnId); // Refresh tasks for the column where the new task was added
+        this.fetchTasksForColumn(columnId);
       }
     });
   }
 
   openCreateColumnDialog(): void {
     const dialogRef = this.dialog.open(CreateEditTaskListComponent, {
-      data: {boardId: this.boardId}, // Pass boardId here
+      data: {boardId: this.boardId},
       width: '400px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         console.log('New column created:', result);
-        this.fetchColumns(); // Fetch the updated list of columns after creation
+        this.fetchColumns();
       }
     });
   }
 
-  // Add this method for deleting a column
   deleteColumn(columnId: number): void {
     const confirmDelete = confirm('Are you sure you want to delete this column and all tasks within it?');
-    if (confirmDelete && this.boardId !== undefined) { // Check if boardId is defined
+    if (confirmDelete && this.boardId !== undefined) {
       this.columnService.deleteColumn(this.boardId, columnId).subscribe(
         () => {
           this.columns = this.columns.filter(column => column.id !== columnId);
@@ -114,8 +113,8 @@ export class TaskListComponent implements OnInit {
       this.columnService.getColumnsByBoard(this.boardId).subscribe(
         (columns: Column[]) => {
           this.columns = columns;
-          this.connectedTo = this.columns.map(column => column.id.toString()); // Update connectedTo
-          this.columns.forEach(column => this.fetchTasksForColumn(column.id)); // Fetch tasks for each column
+          this.connectedTo = this.columns.map(column => column.id.toString());
+          this.columns.forEach(column => this.fetchTasksForColumn(column.id));
         },
         (error) => {
           console.error('Error fetching columns:', error);
@@ -130,7 +129,7 @@ export class TaskListComponent implements OnInit {
         (tasks: Task[]) => {
           const column = this.columns.find(c => c.id === columnId);
           if (column) {
-            column.tasks = tasks; // Assign tasks to the corresponding column
+            column.tasks = tasks;
           }
         },
         (error) => {
@@ -140,7 +139,6 @@ export class TaskListComponent implements OnInit {
     }
   }
 
-  // Add this method to handle drag and drop
   drop(event: CdkDragDrop<Task[]>): void {
     const previousContainer = event.previousContainer;
     const currentContainer = event.container;
@@ -153,7 +151,6 @@ export class TaskListComponent implements OnInit {
 
       console.log(Number(currentContainer.id))
 
-      // Make sure to update the task's column ID in the backend
       this.taskService.updateTaskColumn(task.id, Number(currentContainer.id), this.boardId!).subscribe(() => {
         console.log('Task updated in new column');
       });

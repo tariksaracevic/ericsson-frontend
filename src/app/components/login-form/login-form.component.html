@@ -1,30 +1,35 @@
 @if (!isLoggedIn) {
 <mat-card class="login-container">
   <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <div class="login-form-holder">
-    <label for="email">Email:</label>
-    <input id="email" type="email" formControlName="email" />
+    <mat-form-field class="form-label" appearance="outline">
+      <p>Email</p>
+    <input matInput id="email" type="email" formControlName="email" />
     @if(loginForm.get('email')?.invalid && loginForm.get('email')?.touched) {
-    <div>
-      <small>Please enter a valid email.</small>
-    </div>
+      <mat-error>        Please enter a valid Email
+      </mat-error>
     }
 
-    <label for="password">Password:</label>
-    <input id="password" type="password" formControlName="password" />
+    </mat-form-field>
+    <mat-form-field class="form-label" appearance="outline">
+
+    <p>Password</p>
+    <input matInput id="password" type="password" formControlName="password" />
     @if(loginForm.get('password')?.invalid && loginForm.get('password')?.touched){
-    <div>
-      <small style="display: inline-block">Password is required.</small>
-    </div>
+      <mat-error>        Please enter a valid Password
+      </mat-error>
     }
-      <button mat-flat-button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </mat-form-field>
 
-    </div>
+    <button class="login-button" mat-button type="submit" [disabled]="loginForm.invalid">Login</button>
+
 
   </form>
+  @if (errorMessage) {
+    <mat-error>{{errorMessage}}</mat-error>
+  }
 </mat-card>
 <div style="text-align: center">
-<button mat-flat-button (click)="handleRegister()">Or register a new account</button>
+<button class="register-button" mat-flat-button (click)="handleRegister()">Or register a new account</button>
 </div>
 }
 @else {

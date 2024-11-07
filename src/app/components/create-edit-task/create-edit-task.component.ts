@@ -6,8 +6,8 @@ import {
   MatDialogRef,
   MatDialogTitle
 } from '@angular/material/dialog';
-import {MatFormField} from '@angular/material/form-field';
-import {FormsModule} from '@angular/forms';
+import {MatError, MatFormField} from '@angular/material/form-field';
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from '@angular/forms';
 import {MatOption, MatSelect} from '@angular/material/select';
 import {MatButton} from '@angular/material/button';
 import {MatInput} from '@angular/material/input';
@@ -29,12 +29,16 @@ import {Board} from '../../models/board.interface';
     MatDialogActions,
     MatButton,
     MatInput,
-    MatDialogTitle
+    MatDialogTitle,
+    MatError,
+    ReactiveFormsModule
   ]
 })
 export class CreateEditTaskComponent {
-  title: string = '';
-  description: string = '';
+  taskForm = new FormGroup({
+    title: new FormControl('', Validators.required),
+    description: new FormControl('', Validators.required),
+  })
   boardId: number;
   columnId: number;
 
@@ -48,22 +52,21 @@ export class CreateEditTaskComponent {
   }
 
   closeDialog(): void {
-    this.dialogRef.close(); // Close without returning data
+    this.dialogRef.close();
   }
 
   createTask(): void {
-    if (this.title && this.description) {
-      // Include column_id when creating a new task
+    if (this.taskForm.get('title')?.valid && this.taskForm.get('description')?.valid) {
       const newTask: Omit<Task, 'id'> = {
-        title: this.title,
-        description: this.description,
-        column_id: this.columnId // Add the column_id property here
+        title: this.taskForm.get('title')?.value || '',
+        description: this.taskForm.get('description')?.value || '',
+        column_id: this.columnId
       };
 
       this.taskService.createTask(this.boardId, this.columnId, newTask).subscribe(
         (createdTask) => {
           console.log('Task created:', createdTask);
-          this.dialogRef.close(createdTask); // Close and return created task
+          this.dialogRef.close(createdTask);
         },
         (error) => {
           console.error('Error creating Task:', error);

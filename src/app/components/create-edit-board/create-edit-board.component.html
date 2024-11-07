@@ -1,9 +1,12 @@
 <h2 mat-dialog-title>Create a New Board</h2>
 <mat-dialog-content>
-  <form>
-    <mat-form-field>
+  <form [formGroup]="boardForm">
+    <mat-form-field class="form-label" appearance="outline">
       <p>Title</p>
-      <input matInput [(ngModel)]="name" name="name">
+      <input matInput formControlName="name">
+      @if (boardForm.get('name')?.touched && boardForm.invalid) {
+      <mat-error>Title is required</mat-error>
+      }
     </mat-form-field>
   </form>
 </mat-dialog-content>

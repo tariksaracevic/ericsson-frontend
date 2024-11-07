@@ -1,14 +1,20 @@
 <h2 mat-dialog-title>Create a New Task</h2>
 <mat-dialog-content>
-  <form>
+  <form [formGroup]="taskForm">
     <mat-form-field appearance="outline" class="form-label">
       <p>Title</p>
-      <input matInput [(ngModel)]="title" name="title">
-    </mat-form-field>
+      <input matInput formControlName="title">
+      @if (taskForm.get('title')?.touched && taskForm.invalid) {
+        <mat-error>Title is required</mat-error>
+      }
+        </mat-form-field>
 
     <mat-form-field appearance="outline" class="form-label">
       <p>Description</p>
-      <textarea matInput [(ngModel)]="description" name="description"></textarea>
+      <textarea matInput formControlName="description"></textarea>
+      @if (taskForm.get('description')?.touched && taskForm.invalid) {
+        <mat-error>Description is required</mat-error>
+      }
     </mat-form-field>
   </form>
 </mat-dialog-content>

@@ -1,5 +1,5 @@
 import {Component, Inject} from '@angular/core';
-import {FormsModule} from "@angular/forms";
+import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {MatButton} from "@angular/material/button";
 import {
   MatDialogActions,
@@ -8,7 +8,7 @@ import {
   MAT_DIALOG_DATA,
   MatDialogTitle
 } from "@angular/material/dialog";
-import {MatFormField} from "@angular/material/form-field";
+import {MatError, MatFormField} from "@angular/material/form-field";
 import {MatInput} from "@angular/material/input";
 import {ColumnService} from '../../services/column.service';
 import {Column} from '../../models/task-list.interface';
@@ -23,32 +23,36 @@ import {Column} from '../../models/task-list.interface';
     MatDialogContent,
     MatFormField,
     MatInput,
-    MatDialogTitle
+    MatDialogTitle,
+    MatError,
+    ReactiveFormsModule
   ],
   templateUrl: './create-edit-task-list.component.html',
   styleUrl: './create-edit-task-list.component.css'
 })
 export class CreateEditTaskListComponent {
-  name = '';
-  boardId: number; // Add a property for boardId
+  taskListForm = new FormGroup({
+  name: new FormControl('', Validators.required),
+});
+  boardId: number;
 
   constructor(
     private dialogRef: MatDialogRef<CreateEditTaskListComponent>,
     private columnService: ColumnService,
-    @Inject(MAT_DIALOG_DATA) private data: { boardId: number } // Injecting the boardId
+    @Inject(MAT_DIALOG_DATA) private data: { boardId: number }
   ) {
-    this.boardId = data.boardId; // Assign the boardId from the dialog data
+    this.boardId = data.boardId;
   }
 
   closeDialog(): void {
-    this.dialogRef.close(); // Close without returning data
+    this.dialogRef.close();
   }
 
   createColumn(): void {
-    if (this.name) {
+    if (this.taskListForm.get('name')?.valid) {
       const newColumn: Omit<Column, 'id'> = {
-        name: this.name,
-        boardId: this.boardId, // Include the boardId here
+        name: this.taskListForm.get('name')?.value || '',
+        boardId: this.boardId,
         tasks: [],
       };
 

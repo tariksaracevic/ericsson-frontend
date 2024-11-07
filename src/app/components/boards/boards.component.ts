@@ -51,10 +51,8 @@ export class BoardsComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Add the new task to your task list or call an API to save it
         console.log('New board created:', result);
         this.fetchBoards();
-        // You may call fetchTasks() here to refresh the list
       }
     });
   }

@@ -3,32 +3,10 @@
   margin: 1em auto auto auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 8px;
+  border-radius: 28px;
   background-color: #f9f9f9;
 }
 
-.login-form-holder {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1em;
-}
-
-label {
-  display: block;
-  margin: 10px 0 5px;
-}
-
-input {
-  padding: 8px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-button {
-  align-content: center;
-  margin-top: 1em;
-}
-
-small {
-  color: red;
+.register-button {
+  margin: 1em auto auto auto;
 }

@@ -1,9 +1,12 @@
 <h2 mat-dialog-title>Create a New Column</h2>
 <mat-dialog-content>
-  <form>
-    <mat-form-field>
+  <form [formGroup]="taskListForm">
+    <mat-form-field class="form-label" appearance="outline">
       <p>Title</p>
-      <input matInput [(ngModel)]="name" name="name">
+      <input matInput formControlName="name">
+      @if (taskListForm.get('name')?.touched && taskListForm.invalid) {
+        <mat-error>Title is required</mat-error>
+      }
     </mat-form-field>
   </form>
 </mat-dialog-content>

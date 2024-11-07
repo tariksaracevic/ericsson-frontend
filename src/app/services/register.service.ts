@@ -5,6 +5,7 @@ import {HttpClient} from '@angular/common/http';
 
 interface AuthResponse {
   token: string;
+  email: string;
 }
 
 @Injectable({

@@ -13,12 +13,10 @@ export class AuthGuard implements CanActivate {
     console.log("ovo je token, " + token);
 
     if (!token) {
-      // No token, redirect to login
       this.router.navigate(['/login']);
       return false;
     }
 
-    // Token exists, allow access
     return true;
   }
 }

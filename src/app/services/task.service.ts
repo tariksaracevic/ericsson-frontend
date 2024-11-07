@@ -20,18 +20,6 @@ export class TaskService {
     return this.http.get<Task>(`${this.baseUrl}/${boardId}/task-lists/${columnId}/tasks/${id}`);
   }
 
-  // getAllOpenTasks() {
-  //   return this.http.get<Task>(`${this.baseUrl}/status/1`)
-  // }
-  //
-  // getAllInProgressTasks() {
-  //   return this.http.get<Task>(`${this.baseUrl}/status/2`)
-  // }
-  //
-  // getAllDoneTasks() {
-  //   return this.http.get<Task>(`${this.baseUrl}/status/3`)
-  // }
-
   getTasksByColumnId(boardId: number, columnId: number): Observable<Task[]> {
     return this.http.get<Task[]>(`${this.baseUrl}/${boardId}/task-lists/${columnId}/tasks`);
   }
